@@ -13,7 +13,7 @@ class MediaEntry extends Entry
     protected ?Closure $filterMediaUsing = null;
     protected Closure|bool $mediaText = true;
     protected Closure|string $mediaTextSize = 'sm';  // xs, sm, md, lg
-    protected Closure|string $mediaIconSize = 'md';  // xs, sm, md, lg
+    protected Closure|string $mediaIconSize = 'sm';  // xs, sm, md, lg
 
     public function getState(): mixed
     {
