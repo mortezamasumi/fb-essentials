@@ -2,7 +2,6 @@
 
 namespace Mortezamasumi\FbEssentials\Macros;
 
-use Closure;
 use Filament\Forms\Components\Component;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\DateTimePicker;
@@ -11,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\ServiceProvider;
 use Mortezamasumi\FbPersian\Facades\FbPersian;
+use Closure;
 
 /**
  * Interface declaring Form macros for IDE support
@@ -58,7 +58,7 @@ class FormMacroServiceProvider extends ServiceProvider
             $this->displayFormat(static function (DateTimePicker $component, ?Model $record, $state) use ($format, $onlyDate): ?string {
                 $format = $component->evaluate($format, ['record' => $record, 'state' => $state]);
                 $onlyDate = $component->evaluate($onlyDate, ['record' => $record, 'state' => $state]);
-                $format ??= ($onlyDate ? __('fb-persian::fb-persian.date_format.simple') : __('fb-persian::fb-persian.date_format.time_simple'));
+                $format ??= ($onlyDate ? __('fb-essentials::fb-essentials.date_format.simple') : __('fb-essentials::fb-essentials.date_format.time_simple'));
 
                 return $format;
             });

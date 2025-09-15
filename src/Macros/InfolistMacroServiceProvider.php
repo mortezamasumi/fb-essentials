@@ -2,12 +2,12 @@
 
 namespace Mortezamasumi\FbEssentials\Macros;
 
-use Closure;
 use Filament\Infolists\Components\Component;
 use Filament\Infolists\Components\TextEntry;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\ServiceProvider;
 use Mortezamasumi\FbPersian\Facades\FbPersian;
+use Closure;
 
 /**
  * Interface declaring Table macros for IDE support
@@ -38,7 +38,7 @@ class InfolistMacroServiceProvider extends ServiceProvider
 
                 $format = $component->evaluate($format, ['record' => $record, 'state' => $state]);
                 $onlyDate = $component->evaluate($onlyDate, ['record' => $record, 'state' => $state]);
-                $format ??= ($onlyDate ? __('fb-persian::fb-persian.date_format.simple') : __('fb-persian::fb-persian.date_format.time_simple'));
+                $format ??= ($onlyDate ? __('fb-essentials::fb-essentials.date_format.simple') : __('fb-essentials::fb-essentials.date_format.time_simple'));
 
                 return FbPersian::jDateTime($format, $state, $timezone, $forceLocale);
             });

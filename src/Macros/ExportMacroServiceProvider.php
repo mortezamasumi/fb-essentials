@@ -2,11 +2,11 @@
 
 namespace Mortezamasumi\FbEssentials\Macros;
 
-use Closure;
 use Filament\Actions\Exports\ExportColumn;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\ServiceProvider;
 use Mortezamasumi\FbPersian\Facades\FbPersian;
+use Closure;
 
 /**
  * Interface declaring Table macros for IDE support
@@ -37,7 +37,7 @@ class ExportMacroServiceProvider extends ServiceProvider
 
                 $format = $column->evaluate($format, ['record' => $record, 'state' => $state]);
                 $onlyDate = $column->evaluate($onlyDate, ['record' => $record, 'state' => $state]);
-                $format ??= ($onlyDate ? __('fb-persian::fb-persian.date_format.simple') : __('fb-persian::fb-persian.date_format.time_simple'));
+                $format ??= ($onlyDate ? __('fb-essentials::fb-essentials.date_format.simple') : __('fb-essentials::fb-essentials.date_format.time_simple'));
 
                 return FbPersian::jDateTime($format, $state, $timezone, $forceLocale);
             });

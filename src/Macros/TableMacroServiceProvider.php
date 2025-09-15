@@ -38,7 +38,7 @@ class TableMacroServiceProvider extends ServiceProvider
 
                 $format = $column->evaluate($format, ['record' => $record, 'state' => $state]);
                 $onlyDate = $column->evaluate($onlyDate, ['record' => $record, 'state' => $state]);
-                $format ??= ($onlyDate ? __('fb-persian::fb-persian.date_format.simple') : __('fb-persian::fb-persian.date_format.time_simple'));
+                $format ??= ($onlyDate ? __('fb-essentials::fb-essentials.date_format.simple') : __('fb-essentials::fb-essentials.date_format.time_simple'));
 
                 return FbPersian::jDateTime($format, $state, $timezone, $forceLocale);
             });
