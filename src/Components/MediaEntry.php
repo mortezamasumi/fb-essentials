@@ -19,6 +19,10 @@ class MediaEntry extends Entry
     {
         $media = $this->getConstantState();
 
+        if (empty($media)) {
+            return collect([]);
+        }
+
         throw_unless(get_class($media) === 'Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection', new Exception('state must be instance of spatie MediaCollection'));
 
         return $media;
