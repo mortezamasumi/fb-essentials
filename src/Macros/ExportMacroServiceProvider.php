@@ -5,7 +5,7 @@ namespace Mortezamasumi\FbEssentials\Macros;
 use Filament\Actions\Exports\ExportColumn;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\ServiceProvider;
-use Mortezamasumi\FbPersian\FbEssentials\FbPersian;
+use Mortezamasumi\FbEssentials\Facades\FbPersian;
 use Closure;
 
 /**

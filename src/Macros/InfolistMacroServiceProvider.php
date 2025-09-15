@@ -6,7 +6,7 @@ use Filament\Infolists\Components\Component;
 use Filament\Infolists\Components\TextEntry;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\ServiceProvider;
-use Mortezamasumi\FbPersian\FbEssentials\FbPersian;
+use Mortezamasumi\FbEssentials\Facades\FbPersian;
 use Closure;
 
 /**

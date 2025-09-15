@@ -6,7 +6,7 @@ use Filament\Tables\Columns\Column;
 use Filament\Tables\Columns\TextColumn;
 use Illuminate\Support\Collection;
 use Illuminate\Support\ServiceProvider;
-use Mortezamasumi\FbPersian\FbEssentials\FbPersian;
+use Mortezamasumi\FbEssentials\Facades\FbPersian;
 
 /**
  * Interface declaring Collection psort macro for IDE support
