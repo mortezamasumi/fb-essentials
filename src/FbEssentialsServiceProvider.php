@@ -2,6 +2,8 @@
 
 namespace Mortezamasumi\FbEssentials;
 
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Route;
 use Livewire\Features\SupportTesting\Testable;
 use Mortezamasumi\FbEssentials\Macros\ExportMacroServiceProvider;
 use Mortezamasumi\FbEssentials\Macros\FormMacroServiceProvider;
@@ -36,6 +38,10 @@ class FbEssentialsServiceProvider extends PackageServiceProvider
 
     public function packageBooted(): void
     {
+        Route::get('/fb-essentials-pdf', fn () => Response::file(__DIR__.'/../resources/images/pdf.png'));
+        Route::get('/fb-essentials-video', fn () => Response::file(__DIR__.'/../resources/images/video.png'));
+        Route::get('/fb-essentials-audio', fn () => Response::file(__DIR__.'/../resources/images/audio.png'));
+
         Testable::mixin(new TestsFbEssentials);
     }
 }
