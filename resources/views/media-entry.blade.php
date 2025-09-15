@@ -37,7 +37,7 @@
                 <div>
 
                     @if (str($media?->mime_type)->startsWith('video/'))
-                        <a class="" href="{{ $media?->getUrl() }}" target="_blank">
+                        <a class="" href="{{ $media?->getUrl() }}" target="_blank" rel="noopener noreferrer">
                             <img src="/fb-essentials-assets/video.png" width={{ $iconWidth }}px
                                 height={{ $iconHeight }}px>
                         </a>
