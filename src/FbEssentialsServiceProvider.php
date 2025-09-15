@@ -38,9 +38,14 @@ class FbEssentialsServiceProvider extends PackageServiceProvider
 
     public function packageBooted(): void
     {
-        Route::get('/fb-essentials-pdf', fn () => Response::file(__DIR__.'/../resources/images/pdf.png'));
-        Route::get('/fb-essentials-video', fn () => Response::file(__DIR__.'/../resources/images/video.png'));
-        Route::get('/fb-essentials-audio', fn () => Response::file(__DIR__.'/../resources/images/audio.png'));
+        Route::get('/fb-essentials-assets/{filename}', function ($filename) {
+            $path = __DIR__.'/../resources/images/'.$filename;
+            if (! file_exists($path)) {
+                abort(404);
+            }
+
+            return Response::file($path);
+        });
 
         Testable::mixin(new TestsFbEssentials);
     }
