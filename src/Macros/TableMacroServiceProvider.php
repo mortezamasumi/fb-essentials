@@ -2,12 +2,12 @@
 
 namespace Mortezamasumi\FbEssentials\Macros;
 
-use Closure;
 use Filament\Tables\Columns\Column;
 use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\ServiceProvider;
-use Mortezamasumi\FbPersian\Facades\FbPersian;
+use Mortezamasumi\FbPersian\FbEssentials\FbPersian;
+use Closure;
 
 /**
  * Interface declaring Table macros for IDE support
