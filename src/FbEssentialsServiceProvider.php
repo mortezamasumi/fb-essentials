@@ -41,11 +41,6 @@ class FbEssentialsServiceProvider extends PackageServiceProvider
 
     public function packageBooted(): void
     {
-        // FilamentAsset::register(
-        //     $this->getAssets(),
-        //     $this->getAssetPackageName()
-        // );
-
         Route::get('/fb-essentials-assets/{filename}', function ($filename) {
             $path = __DIR__.'/../resources/images/'.$filename;
             if (! file_exists($path)) {
@@ -56,20 +51,5 @@ class FbEssentialsServiceProvider extends PackageServiceProvider
         });
 
         Testable::mixin(new TestsFbEssentials);
-    }
-
-    protected function getAssetPackageName(): ?string
-    {
-        return 'mortezamasumi/fb-essentials';
-    }
-
-    /**
-     * @return array<Asset>
-     */
-    protected function getAssets(): array
-    {
-        return [
-            Images::make('fb-essentials-images', __DIR__.'/../resources/images/pdf.png'),
-        ];
     }
 }
