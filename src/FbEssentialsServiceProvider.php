@@ -27,7 +27,8 @@ class FbEssentialsServiceProvider extends PackageServiceProvider
         $package
             ->name(static::$name)
             ->hasTranslations()
-            ->hasViews();
+            ->hasViews()
+            ->hasConfigFile();
     }
 
     public function packageRegistered(): void
