@@ -7,7 +7,21 @@ class FbEssentials
     public function filamentShieldAddResource(string $class, array $permissions, bool $replace = false): void
     {
         $policies = array_merge(
-            $replace ? [] : config(['filament-shield.policies.methods']),
+            $replace
+                ? []
+                : [
+                    'viewAny',
+                    'view',
+                    'create',
+                    'update',
+                    'delete',
+                    'restore',
+                    'forceDelete',
+                    'forceDeleteAny',
+                    'restoreAny',
+                    'replicate',
+                    'reorder',
+                ],
             $permissions,
         );
 
