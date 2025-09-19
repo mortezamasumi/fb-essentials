@@ -126,7 +126,7 @@ class FbPersian
         };
     }
 
-    public function jDateTime(?string $format, $datetime = null, ?string $timezome = null, $forceLocale = null): string
+    public function jDate(?string $format, $datetime = null, ?string $timezome = null, $forceLocale = null): string
     {
         if (empty($datetime)) {
             return '';
@@ -135,7 +135,22 @@ class FbPersian
         return $this->digit(
             match (App::getLocale()) {
                 'fa' => Jalali::forge($datetime)->format($format ?? __('fb-essentials::fb-essentials.date_format.full')),
-                default => Carbon::parse($datetime)->format($format ?? __('fb-essentials::fb-essentialsntials.date_format.full')),
+                default => Carbon::parse($datetime)->format($format ?? __('fb-essentials::fb-essentials.date_format.full')),
+            },
+            $forceLocale
+        );
+    }
+
+    public function jDateTime(?string $format, $datetime = null, ?string $timezome = null, $forceLocale = null): string
+    {
+        if (empty($datetime)) {
+            return '';
+        }
+
+        return $this->digit(
+            match (App::getLocale()) {
+                'fa' => Jalali::forge($datetime)->format($format ?? __('fb-essentials::fb-essentials.date_format.time_full')),
+                default => Carbon::parse($datetime)->format($format ?? __('fb-essentials::fb-essentials.date_format.time_full')),
             },
             $forceLocale
         );
