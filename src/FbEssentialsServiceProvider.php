@@ -2,6 +2,10 @@
 
 namespace Mortezamasumi\FbEssentials;
 
+use Filament\Actions\Action;
+use Filament\Actions\CreateAction;
+use Filament\Actions\EditAction;
+use Filament\Schemas\Components\Form;
 use Filament\Support\Assets\Asset;
 use Filament\Support\Facades\FilamentAsset;
 use Illuminate\Support\Facades\Response;
@@ -49,6 +53,10 @@ class FbEssentialsServiceProvider extends PackageServiceProvider
             }
 
             return Response::file($path);
+        });
+
+        Form::configureUsing(function (Form $form) {
+            $form->extraAttributes(['novalidate' => true]);
         });
 
         Testable::mixin(new TestsFbEssentials);
