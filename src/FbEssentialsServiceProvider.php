@@ -2,22 +2,17 @@
 
 namespace Mortezamasumi\FbEssentials;
 
-use Filament\Actions\Action;
-use Filament\Actions\CreateAction;
-use Filament\Actions\EditAction;
 use Filament\Schemas\Components\Form;
-use Filament\Support\Assets\Asset;
-use Filament\Support\Facades\FilamentAsset;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Route;
 use Livewire\Features\SupportTesting\Testable;
-use Mortezamasumi\FbEssentials\Assets\Images;
 use Mortezamasumi\FbEssentials\Macros\ExportMacroServiceProvider;
 use Mortezamasumi\FbEssentials\Macros\FormMacroServiceProvider;
 use Mortezamasumi\FbEssentials\Macros\InfolistMacroServiceProvider;
 use Mortezamasumi\FbEssentials\Macros\PsortMacroServiceProvider;
 use Mortezamasumi\FbEssentials\Macros\TableMacroServiceProvider;
 use Mortezamasumi\FbEssentials\Testing\TestsFbEssentials;
+use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -30,6 +25,10 @@ class FbEssentialsServiceProvider extends PackageServiceProvider
     {
         $package
             ->name(static::$name)
+            ->hasInstallCommand(function (InstallCommand $command) {
+                $command
+                    ->publishConfigFile();
+            })
             ->hasTranslations()
             ->hasViews()
             ->hasConfigFile();
