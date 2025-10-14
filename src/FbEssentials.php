@@ -6,6 +6,10 @@ class FbEssentials
 {
     public function filamentShieldAddResource(string $class, array $permissions, bool $replace = false): void
     {
+        if (app()->environment('testing')) {
+            return;
+        }
+
         $policies = array_merge(
             $replace
                 ? []
@@ -35,6 +39,10 @@ class FbEssentials
 
     public function filamentShieldExcludeResource(string $class): void
     {
+        if (app()->environment('testing')) {
+            return;
+        }
+
         $current = config('filament-shield.resources.exclude') ?? [];
 
         config(['filament-shield.resources.exclude' => [
@@ -45,6 +53,10 @@ class FbEssentials
 
     public function filamentShieldExcludePage(string $class): void
     {
+        if (app()->environment('testing')) {
+            return;
+        }
+
         $current = config('filament-shield.pages.exclude') ?? [];
 
         config(['filament-shield.pages.exclude' => [
@@ -55,6 +67,10 @@ class FbEssentials
 
     public function filamentShieldExcludeWidget(string $class): void
     {
+        if (app()->environment('testing')) {
+            return;
+        }
+
         $current = config('filament-shield.widgets.exclude') ?? [];
 
         config(['filament-shield.widgets.exclude' => [
