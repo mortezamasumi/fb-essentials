@@ -2,11 +2,13 @@
 
 namespace Mortezamasumi\FbEssentials;
 
+use Illuminate\Support\Facades\App;
+
 class FbEssentials
 {
     public function filamentShieldAddResource(string $class, array $permissions, bool $replace = false): void
     {
-        if (app()->environment('testing')) {
+        if (App::environment('testing')) {
             return;
         }
 
@@ -39,7 +41,7 @@ class FbEssentials
 
     public function filamentShieldExcludeResource(string $class): void
     {
-        if (app()->environment('testing')) {
+        if (App::environment('testing')) {
             return;
         }
 
@@ -53,7 +55,7 @@ class FbEssentials
 
     public function filamentShieldExcludePage(string $class): void
     {
-        if (app()->environment('testing')) {
+        if (App::environment('testing')) {
             return;
         }
 
@@ -67,7 +69,7 @@ class FbEssentials
 
     public function filamentShieldExcludeWidget(string $class): void
     {
-        if (app()->environment('testing')) {
+        if (App::environment('testing')) {
             return;
         }
 
