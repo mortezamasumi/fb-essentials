@@ -23,8 +23,6 @@ it('can see export action', function () {
 });
 
 it('can call export action', function () {
-    Queue::fake();
-
     $this
         ->actingAs(User::factory()->create())
         ->livewire(PostsExport::class)
@@ -34,8 +32,6 @@ it('can call export action', function () {
 });
 
 it('can export posts and verify downloaded csv file', function () {
-    Storage::fake('local');
-
     Post::factory(20)->create();
 
     $this
@@ -69,8 +65,6 @@ it('can export posts and verify downloaded csv file', function () {
 
 it('can test export column macros', function () {
     App::setLocale('fa');
-
-    Storage::fake('local');
 
     $post = Post::factory()->create();
 
