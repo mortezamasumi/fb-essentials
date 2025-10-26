@@ -8,9 +8,8 @@ use Filament\Panel;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Facades\View;
-use Mortezamasumi\FbEssentials\Tests\Services\User;
 use Mortezamasumi\FbEssentials\FbEssentialsServiceProvider;
+use Mortezamasumi\FbEssentials\Tests\Services\User;
 use Orchestra\Testbench\TestCase as TestbenchTestCase;
 
 class TestCase extends TestbenchTestCase
@@ -81,8 +80,6 @@ class TestCase extends TestbenchTestCase
             $table->datetime('date2');
             $table->timestamps();
         });
-
-        View::addLocation(__DIR__.'/Views');
 
         Filament::registerPanel(
             Panel::make()

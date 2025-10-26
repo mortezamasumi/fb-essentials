@@ -2,23 +2,26 @@
 
 namespace Mortezamasumi\FbEssentials\Tests\Services;
 
-use Filament\Actions\Concerns\InteractsWithActions;
-use Filament\Actions\Contracts\HasActions;
-use Filament\Schemas\Concerns\InteractsWithSchemas;
-use Filament\Schemas\Contracts\HasSchemas;
+use Filament\Pages\Page;
+use Filament\Schemas\Components\EmbeddedTable;
+use Filament\Schemas\Schema;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Table;
-use Illuminate\Contracts\View\View;
-use Livewire\Component;
 use Mortezamasumi\FbEssentials\Tests\Services\Post;
 
-class PostsTable extends Component implements HasActions, HasSchemas, HasTable
+class PostsTable extends Page implements HasTable
 {
-    use InteractsWithActions;
-    use InteractsWithSchemas;
     use InteractsWithTable;
+
+    public function content(Schema $schema): Schema
+    {
+        return $schema
+            ->components([
+                EmbeddedTable::make(),
+            ]);
+    }
 
     public function table(Table $table): Table
     {
@@ -30,10 +33,5 @@ class PostsTable extends Component implements HasActions, HasSchemas, HasTable
                 TextColumn::make('date1')->jDate(),
                 TextColumn::make('date2')->jDateTime(),
             ]);
-    }
-
-    public function render(): View
-    {
-        return view('posts-table');
     }
 }

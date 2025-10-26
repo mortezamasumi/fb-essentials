@@ -5,24 +5,14 @@ namespace Mortezamasumi\FbEssentials\Tests\Services;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Concerns\InteractsWithForms;
-use Filament\Forms\Contracts\HasForms;
-use Filament\Forms\Form;
+use Filament\Pages\Page;
 use Filament\Schemas\Schema;
-use Filament\Forms;
-use Illuminate\Contracts\View\View;
-use Livewire\Component;
+use Illuminate\Database\Eloquent\Model;
 
-class PostCreate extends Component implements HasForms
+class PostCreate extends Page
 {
-    use InteractsWithForms;
-
+    public ?Model $record = null;
     public ?array $data = [];
-
-    public function mount(): void
-    {
-        $this->form->fill();
-    }
 
     public function form(Schema $schema): Schema
     {
@@ -39,10 +29,5 @@ class PostCreate extends Component implements HasForms
     public function create(): void
     {
         Post::create($this->form->getState());
-    }
-
-    public function render(): View
-    {
-        return view('post-create');
     }
 }

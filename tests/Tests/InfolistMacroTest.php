@@ -5,12 +5,6 @@ use Illuminate\Support\Facades\App;
 use Mortezamasumi\FbEssentials\Tests\Services\Post;
 use Mortezamasumi\FbEssentials\Tests\Services\PostView;
 
-it('can render post infolist page', function () {
-    $this
-        ->livewire(PostView::class)
-        ->assertSuccessful();
-});
-
 it('check that infolist page contains correct info', function () {
     App::setLocale('fa');
 
@@ -22,10 +16,17 @@ it('check that infolist page contains correct info', function () {
     ]);
 
     $this
-        ->livewire(PostView::class, ['post' => $post])
-        ->assertSee('۱۲۳۴')
-        ->assertSee('4321')
-        ->assertSee('۱۳۹۶/۰۹/۲۲')
-        ->assertDontSee('۱۳۹۶/۰۹/۲۲ ۱۱:۲۲:۳۳')
-        ->assertDontSee('۱۳۹۶/۰۹/۲۳ ۱۱:۲۲:۳۳');
+        ->livewire(PostView::class, ['record' => $post])
+        ->assertSuccessful()
+        ->assertSchemaStateSet([
+            'title1' => $post->title1,
+            'title2' => $post->title2,
+            'date1' => $post->date1,
+            'date2' => $post->date2,
+        ])
+        ->assertSee(__digit($post->title1))
+        ->assertSee($post->title2)
+        ->assertSee(__jdatetime(__f_date(), $post->date1))
+        ->assertDontSee(__jdatetime(__f_datetime(), $post->date1))
+        ->assertSee(__jdatetime(__f_datetime(), $post->date2));
 });

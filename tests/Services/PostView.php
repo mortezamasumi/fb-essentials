@@ -2,39 +2,28 @@
 
 namespace Mortezamasumi\FbEssentials\Tests\Services;
 
-use Carbon\Carbon;
 use Filament\Infolists\Components\TextEntry;
-use Filament\Schemas\Concerns\InteractsWithSchemas;
-use Filament\Schemas\Contracts\HasSchemas;
+use Filament\Pages\Page;
 use Filament\Schemas\Schema;
-use Illuminate\Contracts\View\View;
-use Livewire\Component;
 
-class PostView extends Component implements HasSchemas
+class PostView extends Page
 {
-    use InteractsWithSchemas;
+    public Post $record;
 
-    protected $post;
-
-    public function mount(Post $post): void
+    public function mount(Post $record): void
     {
-        $this->post = $post;
+        $this->record = $record;
     }
 
-    public function postInfolist(Schema $schema): Schema
+    public function content(Schema $schema): Schema
     {
         return $schema
-            ->record($this->post)
+            ->record($this->record)
             ->components([
                 TextEntry::make('title1')->localeDigit(),
                 TextEntry::make('title2'),
                 TextEntry::make('date1')->jDate(),
                 TextEntry::make('date2')->jDateTime(),
             ]);
-    }
-
-    public function render(): View
-    {
-        return view('post-view');
     }
 }
