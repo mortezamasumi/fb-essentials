@@ -58,11 +58,13 @@ class FbEssentialsPlugin implements Plugin
 
     public function boot(Panel $panel): void
     {
-        $languages = explode(',', config('fb-essentials.used_languages'));
+        if (config('fb-essentials.has_language_switcher')) {
+            $languages = explode(',', config('fb-essentials.used_languages'));
 
-        LanguageSwitch::configureUsing(function (LanguageSwitch $switch) use ($languages) {
-            $switch->locales($languages);
-        });
+            LanguageSwitch::configureUsing(function (LanguageSwitch $switch) use ($languages) {
+                $switch->locales($languages);
+            });
+        }
     }
 
     public static function make(): static
