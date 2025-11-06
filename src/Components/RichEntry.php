@@ -2,12 +2,12 @@
 
 namespace Mortezamasumi\FbEssentials\Components;
 
-use DOMDocument;
-use DOMElement;
-use DOMXPath;
 use Filament\Forms\Components\RichEditor\RichContentRenderer;
 use Filament\Infolists\Components\Entry;
 use Illuminate\Support\Facades\App;
+use DOMDocument;
+use DOMElement;
+use DOMXPath;
 
 class RichEntry extends Entry
 {
@@ -15,10 +15,10 @@ class RichEntry extends Entry
 
     public function getState(): mixed
     {
-        return $this->processHtml($this->getConstantState());
+        return static::processRichContentHtml($this->getConstantState());
     }
 
-    function processHtml(string|array $html): string
+    public static function processRichContentHtml(string|array $html): string
     {
         if (is_array($html)) {
             $html = RichContentRenderer::make($html)->toHtml();
