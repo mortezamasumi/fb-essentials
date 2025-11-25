@@ -150,7 +150,11 @@ class FbPersian
 
         return $this->digit(
             match (App::getLocale()) {
-                'fa' => Jalali::forge($datetime, new DateTimeZone($timezome))->format($format ?? __('fb-essentials::fb-essentials.date_format.time_full')),
+                'fa' => Jalali::forge(
+                    $datetime,
+                    $timezome ? new DateTimeZone($timezome) : null
+                )
+                    ->format($format ?? __('fb-essentials::fb-essentials.date_format.time_full')),
                 default => Carbon::parse($datetime, $timezome)->format($format ?? __('fb-essentials::fb-essentials.date_format.time_full')),
             },
             $forceLocale
