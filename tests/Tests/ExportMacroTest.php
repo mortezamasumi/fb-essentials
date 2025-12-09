@@ -8,18 +8,21 @@ use Mortezamasumi\FbEssentials\Tests\Services\PostsExport;
 use Mortezamasumi\FbEssentials\Tests\Services\User;
 
 it('can render export page', function () {
+    /** @var Pest $this */
     $this
         ->livewire(PostsExport::class)
         ->assertSuccessful();
 });
 
 it('can see export action', function () {
+    /** @var Pest $this */
     $this
         ->livewire(PostsExport::class)
         ->assertActionExists('export');
 });
 
 it('can call export action', function () {
+    /** @var Pest $this */
     $this
         ->actingAs(User::factory()->create())
         ->livewire(PostsExport::class)
@@ -35,6 +38,7 @@ it('can export posts and verify downloaded csv file', function () {
 
     Post::factory($count)->create();
 
+    /** @var Pest $this */
     $this
         ->actingAs(User::factory()->create())
         ->livewire(PostsExport::class)
@@ -65,7 +69,7 @@ it('can export posts and verify downloaded csv file', function () {
         ->tap(function ($response) {
             $content = $response->streamedContent();
 
-            foreach (collect(PostExporter::getColumns())->map(fn ($column) => $column->getLabel()) as $label) {
+            foreach (collect(PostExporter::getColumns())->map(fn($column) => $column->getLabel()) as $label) {
                 expect($content)
                     ->toContain($label);
             };

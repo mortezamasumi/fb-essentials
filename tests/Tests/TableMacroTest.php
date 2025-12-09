@@ -6,6 +6,7 @@ use Mortezamasumi\FbEssentials\Tests\Services\Post;
 use Mortezamasumi\FbEssentials\Tests\Services\PostsTable;
 
 it('can render post lists page', function () {
+    /** @var Pest $this */
     $this
         ->livewire(PostsTable::class)
         ->assertSuccessful();
@@ -15,6 +16,7 @@ it('can render list of posts', function () {
     $count = 5;
     $posts = Post::factory(5)->create();
 
+    /** @var Pest $this */
     $this
         ->livewire(PostsTable::class)
         ->assertCanSeeTableRecords($posts)
@@ -27,6 +29,7 @@ it('can test table column macros', function () {
     $count = 5;
     $posts = Post::factory($count)->create();
 
+    /** @var Pest $this */
     foreach ($posts as $post) {
         $this
             ->livewire(PostsTable::class)

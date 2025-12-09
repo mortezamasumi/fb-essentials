@@ -15,6 +15,7 @@ it('check that infolist page contains correct info', function () {
         'date2' => Carbon::parse('2017-12-14 11:22:33'),
     ]);
 
+    /** @var Pest $this */
     $this
         ->livewire(PostView::class, ['record' => $post])
         ->assertSuccessful()

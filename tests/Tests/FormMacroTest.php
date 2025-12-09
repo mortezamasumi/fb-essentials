@@ -6,6 +6,7 @@ use Mortezamasumi\FbEssentials\Tests\Services\Post;
 use Mortezamasumi\FbEssentials\Tests\Services\PostCreate;
 
 it('can render post form', function () {
+    /** @var Pest $this */
     $this
         ->livewire(PostCreate::class)
         ->assertSuccessful();
@@ -14,6 +15,7 @@ it('can render post form', function () {
 it('can call create method', function () {
     App::setLocale('fa');
 
+    /** @var Pest $this */
     $this
         ->livewire(PostCreate::class)
         ->fillForm([
@@ -29,6 +31,7 @@ it('can call create method', function () {
 it('can fill the form and store it correctly', function () {
     App::setLocale('fa');
 
+    /** @var Pest $this */
     $this
         ->livewire(PostCreate::class)
         ->fillForm([
