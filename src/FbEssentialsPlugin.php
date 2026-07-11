@@ -6,6 +6,7 @@ use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
 use BezhanSalleh\LanguageSwitch\Http\Middleware\SwitchLanguageLocale;
 use BezhanSalleh\LanguageSwitch\LanguageSwitch;
 use Filament\Contracts\Plugin;
+use Filament\FontProviders\GoogleFontProvider;
 use Filament\FontProviders\SpatieGoogleFontProvider;
 use Filament\Panel;
 use LaraZeus\SpatieTranslatable\SpatieTranslatablePlugin;
@@ -47,7 +48,7 @@ class FbEssentialsPlugin implements Plugin
         if (config('fb-essentials.has_vazirmatn_font')) {
             config(['google-fonts.fonts.default' => 'https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;200;300;400;500;600;700;800;900']);
 
-            $panel->font('Vazirmatn', provider: SpatieGoogleFontProvider::class);
+            $panel->font('Vazirmatn', provider: GoogleFontProvider::class);
         }
 
         $panel
