@@ -7,7 +7,6 @@ use BezhanSalleh\LanguageSwitch\Http\Middleware\SwitchLanguageLocale;
 use BezhanSalleh\LanguageSwitch\LanguageSwitch;
 use Filament\Contracts\Plugin;
 use Filament\FontProviders\GoogleFontProvider;
-use Filament\FontProviders\SpatieGoogleFontProvider;
 use Filament\Panel;
 use LaraZeus\SpatieTranslatable\SpatieTranslatablePlugin;
 use pxlrbt\FilamentEnvironmentIndicator\EnvironmentIndicatorPlugin;
