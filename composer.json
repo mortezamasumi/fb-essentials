@@ -1,6 +1,6 @@
 {
     "name": "mortezamasumi/fb-essentials",
-    "description": "This is my package fb-essentials",
+    "description": "Persian (Farsi) language toolkit for Filament v5 — digit conversion, Jalali dates, Persian sorting, Shield helpers, and more.",
     "keywords": [
         "mortezamasumi",
         "laravel",

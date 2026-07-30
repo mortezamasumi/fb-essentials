@@ -7,6 +7,7 @@ use Illuminate\Support\Collection;
 use Closure;
 use Exception;
 
+// TODO: consider extracting into a separate package
 class MediaEntry extends Entry
 {
     protected string $view = 'fb-essentials::media-entry';

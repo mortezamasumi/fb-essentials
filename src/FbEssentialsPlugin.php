@@ -27,9 +27,7 @@ class FbEssentialsPlugin implements Plugin
         }
 
         if (config('fb-essentials.has_translatable')) {
-            $languages = explode(',', config('fb-essentials.used_languages'));
-
-            $panel->plugin(SpatieTranslatablePlugin::make()->defaultLocales($languages));
+            $panel->plugin(SpatieTranslatablePlugin::make()->defaultLocales(config('fb-essentials.used_languages')));
         }
 
         if (config('fb-essentials.has_shield')) {
@@ -59,10 +57,8 @@ class FbEssentialsPlugin implements Plugin
     public function boot(Panel $panel): void
     {
         if (config('fb-essentials.has_language_switcher')) {
-            $languages = explode(',', config('fb-essentials.used_languages'));
-
-            LanguageSwitch::configureUsing(function (LanguageSwitch $switch) use ($languages) {
-                $switch->locales($languages);
+            LanguageSwitch::configureUsing(function (LanguageSwitch $switch) {
+                $switch->locales(config('fb-essentials.used_languages'));
             });
         }
     }

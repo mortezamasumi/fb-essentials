@@ -3,7 +3,8 @@
 return [
     'has_language_switcher' => env('HAS_LANGUAGE_SWITCHER', true),
     'has_translatable' => env('HAS_TRANSLATABLE', false),
-    'used_languages' => env('USED_LANGUAGES', 'en,fa'),
+    // env var accepts comma-separated string for backward compatibility
+    'used_languages' => explode(',', env('USED_LANGUAGES', 'en,fa')),
     'has_shield' => env('HAS_SHIELD', true),
     'shield_resource_sort' => env('SHIELD_RESOURCE_SORT', 15),
     'has_environment_indicator' => env('HAS_ENVIRONMENT_INDICATOR', true),

@@ -38,7 +38,7 @@
 
                     @if (str($media?->mime_type)->startsWith('video/'))
                         <a class="" href="{{ $media?->getUrl() }}" target="_blank" rel="noopener noreferrer">
-                            <img src="/fb-essentials-assets/video.png" width={{ $iconWidth }}px
+                            <img src="{{ asset('vendor/fb-essentials/images/video.png') }}" onerror="this.src='/fb-essentials-assets/video.png'" width={{ $iconWidth }}px
                                 height={{ $iconHeight }}px>
                         </a>
                     @endif
@@ -51,14 +51,14 @@
 
                     @if (str($media?->mime_type)->startsWith('application/pdf'))
                         <a class="flex justify-center" href="{{ $media?->getUrl() }}" target="_blank">
-                            <img src="/fb-essentials-assets/pdf.png" width={{ $iconWidth }}px
+                            <img src="{{ asset('vendor/fb-essentials/images/pdf.png') }}" onerror="this.src='/fb-essentials-assets/pdf.png'" width={{ $iconWidth }}px
                                 height={{ $iconHeight }}px>
                         </a>
                     @endif
 
                     @if (str($media?->mime_type)->startsWith('audio/'))
                         <a class="flex justify-center" href="{{ $media?->getUrl() }}" target="_blank">
-                            <img src="/fb-essentials-assets/audio.png" width={{ $iconWidth }}px
+                            <img src="{{ asset('vendor/fb-essentials/images/audio.png') }}" onerror="this.src='/fb-essentials-assets/audio.png'" width={{ $iconWidth }}px
                                 height={{ $iconHeight }}px>
                         </a>
                     @endif

@@ -33,9 +33,28 @@ class PsortMacroServiceProvider extends ServiceProvider
         Collection::macro('pSort', function (?string $field = null, bool $ascending = true, ?callable $callback = null) {
             /** @var Collection $this */
 
-            // Type 4: Eloquent Collection
+            // Type 4: Eloquent Collection - sort by attribute or value
             if ($this instanceof EloquentCollection) {
-                return $this;
+                $sortedItems = $this->all();
+
+                usort($sortedItems, function ($a, $b) use ($field, $ascending, $callback) {
+                    $valueA = $field ? data_get($a, $field) : $a;
+                    $valueB = $field ? data_get($b, $field) : $b;
+
+                    if ($callback) {
+                        $valueA = $callback($valueA);
+                        $valueB = $callback($valueB);
+                    } else {
+                        $valueA = strtr((string) $valueA, FbPersian::persianConvert());
+                        $valueB = strtr((string) $valueB, FbPersian::persianConvert());
+                    }
+
+                    $result = $valueA <=> $valueB;
+
+                    return $ascending ? $result : -$result;
+                });
+
+                return new static($sortedItems);
             }
 
             // Type 2: Dictionary - collect(['111' => 'a', '222' => 'b']);

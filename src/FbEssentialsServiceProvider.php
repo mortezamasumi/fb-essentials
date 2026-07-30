@@ -31,6 +31,7 @@ class FbEssentialsServiceProvider extends PackageServiceProvider
             })
             ->hasTranslations()
             ->hasViews()
+            ->hasAssets()
             ->hasConfigFile();
     }
 
@@ -46,13 +47,18 @@ class FbEssentialsServiceProvider extends PackageServiceProvider
     public function packageBooted(): void
     {
         Route::get('/fb-essentials-assets/{filename}', function ($filename) {
-            $path = __DIR__.'/../resources/images/'.$filename;
-            if (! file_exists($path)) {
+            $publishedPath = public_path('vendor/fb-essentials/images/'.$filename);
+            if (file_exists($publishedPath)) {
+                return Response::file($publishedPath);
+            }
+
+            $packagePath = __DIR__.'/../resources/images/'.$filename;
+            if (! file_exists($packagePath)) {
                 abort(404);
             }
 
-            return Response::file($path);
-        });
+            return Response::file($packagePath);
+        })->name('fb-essentials.assets');
 
         Form::configureUsing(function (Form $form) {
             $form->extraAttributes(['novalidate' => true]);

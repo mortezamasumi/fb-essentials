@@ -9,6 +9,7 @@ use DOMDocument;
 use DOMElement;
 use DOMXPath;
 
+// TODO: consider extracting into a separate package
 class RichEntry extends Entry
 {
     protected string $view = 'fb-essentials::rich-entry';
@@ -29,8 +30,9 @@ class RichEntry extends Entry
         }
 
         $dom = new DOMDocument();
-        // Load the HTML fragment, suppressing warnings and specifying UTF-8
-        @$dom->loadHTML('<?xml encoding="UTF-8">'.$html, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+        libxml_use_internal_errors(true);
+        $dom->loadHTML('<?xml encoding="UTF-8">'.$html, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+        libxml_clear_errors();
 
         $xpath = new DOMXPath($dom);
 
