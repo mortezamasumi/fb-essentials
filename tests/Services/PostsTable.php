@@ -9,7 +9,6 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Table;
-use Mortezamasumi\FbEssentials\Tests\Services\Post;
 
 class PostsTable extends Page implements HasTable
 {

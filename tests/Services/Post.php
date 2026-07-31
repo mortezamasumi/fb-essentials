@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 #[UseFactory(PostFactory::class)]
 class Post extends Model
 {
-    Use HasFactory;
+    use HasFactory;
 
     protected $guarded = [];
 

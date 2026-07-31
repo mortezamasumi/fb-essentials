@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Database\Eloquent\Model;
 use Mortezamasumi\FbEssentials\Traits\TranslatableUnicodeJson;
 
 function callAsJson(object $model, array $value): string
@@ -8,7 +9,8 @@ function callAsJson(object $model, array $value): string
 }
 
 it('encodes json with unescaped unicode', function () {
-    $model = new class extends \Illuminate\Database\Eloquent\Model {
+    $model = new class extends Model
+    {
         use TranslatableUnicodeJson;
     };
 
@@ -20,7 +22,8 @@ it('encodes json with unescaped unicode', function () {
 });
 
 it('encodes plain ascii json correctly', function () {
-    $model = new class extends \Illuminate\Database\Eloquent\Model {
+    $model = new class extends Model
+    {
         use TranslatableUnicodeJson;
     };
 
@@ -30,7 +33,8 @@ it('encodes plain ascii json correctly', function () {
 });
 
 it('handles mixed persian and english text', function () {
-    $model = new class extends \Illuminate\Database\Eloquent\Model {
+    $model = new class extends Model
+    {
         use TranslatableUnicodeJson;
     };
 

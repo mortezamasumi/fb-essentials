@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\App;
 
 class FbEssentials
 {
+    /**
+     * @param  array<int, string>  $permissions
+     */
     public function filamentShieldAddResource(string $class, array $permissions, bool $replace = false): void
     {
         if (App::environment('testing')) {

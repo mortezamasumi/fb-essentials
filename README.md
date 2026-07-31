@@ -1,6 +1,7 @@
 # FB Essentials — Filament Persian Toolkit
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/mortezamasumi/fb-essentials.svg?style=flat-square)](https://packagist.org/packages/mortezamasumi/fb-essentials)
+[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/mortezamasumi/fb-essentials/ci.yml?branch=main&label=tests&style=flat-square)](https://github.com/mortezamasumi/fb-essentials/actions?query=branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/mortezamasumi/fb-essentials.svg?style=flat-square)](https://packagist.org/packages/mortezamasumi/fb-essentials)
 [![License](https://img.shields.io/packagist/l/mortezamasumi/fb-essentials.svg?style=flat-square)](LICENSE.md)
 
@@ -61,7 +62,7 @@ return [
     'shield_resource_sort'  => env('SHIELD_RESOURCE_SORT', 15),
     'has_environment_indicator' => env('HAS_ENVIRONMENT_INDICATOR', true),
     'app_as_spa'            => env('APP_AS_SPA', true),
-    'has_vazirmatn_font'    => env('HAZ_VAZIRMATN_FONT', true),
+    'has_vazirmatn_font'    => env('HAS_VAZIRMATN_FONT', true),
 ];
 ```
 
@@ -200,6 +201,14 @@ __jdatetime('Y/m/d H:i', $date); // Jalali datetime
 
 ---
 
+## Support policy
+
+| PHP | Laravel | Filament |
+| --- | --- | --- |
+| 8.3 | 12 | 5.x |
+
+---
+
 ## Testing
 
 ```bash
@@ -207,6 +216,14 @@ composer test
 ```
 
 ---
+
+## Contributing
+
+Please see [CONTRIBUTING](.github/CONTRIBUTING.md) for details.
+
+## Security
+
+If you discover a security vulnerability, please review our [security policy](.github/SECURITY.md) on how to report it.
 
 ## Changelog
 

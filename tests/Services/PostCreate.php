@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 class PostCreate extends Page
 {
     public ?Model $record = null;
+
     public ?array $data = [];
 
     public function form(Schema $schema): Schema

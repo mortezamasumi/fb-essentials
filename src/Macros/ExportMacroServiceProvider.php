@@ -2,11 +2,12 @@
 
 namespace Mortezamasumi\FbEssentials\Macros;
 
+use Closure;
 use Filament\Actions\Exports\ExportColumn;
+use Filament\Tables\Columns\Column;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\ServiceProvider;
 use Mortezamasumi\FbEssentials\Facades\FbPersian;
-use Closure;
 
 /**
  * Interface declaring Table macros for IDE support
@@ -19,7 +20,7 @@ interface ExportMacrosInterface {}
 
 class ExportMacroServiceProvider extends ServiceProvider
 {
-    public function boot()
+    public function boot(): void
     {
         ExportColumn::macro('jDate', function (string|Closure|null $format = null, ?string $timezone = null, ?string $forceLocale = null): ExportColumn {
             /** @var ExportColumn $this */
@@ -47,7 +48,7 @@ class ExportMacroServiceProvider extends ServiceProvider
 
         ExportColumn::macro('localeDigit', function (?string $forceLocale = null): ExportColumn {
             /** @var ExportColumn $this */
-            $this->formatStateUsing(static fn (mixed $state) => in_array(gettype($state), ['integer', 'double', 'string']) ? FbPersian::digit($state, $forceLocale) : $state);
+            $this->formatStateUsing(static fn (mixed $state) => in_array(gettype($state), ['integer', 'double', 'string']) ? FbPersian::digit((string) $state, $forceLocale) : $state);
 
             return $this;
         });

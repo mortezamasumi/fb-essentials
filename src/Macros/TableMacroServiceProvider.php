@@ -2,12 +2,12 @@
 
 namespace Mortezamasumi\FbEssentials\Macros;
 
+use Closure;
 use Filament\Tables\Columns\Column;
 use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\ServiceProvider;
 use Mortezamasumi\FbEssentials\Facades\FbPersian;
-use Closure;
 
 /**
  * Interface declaring Table macros for IDE support
@@ -20,7 +20,7 @@ interface TableMacrosInterface {}
 
 class TableMacroServiceProvider extends ServiceProvider
 {
-    public function boot()
+    public function boot(): void
     {
         TextColumn::macro('jDate', function (string|Closure|null $format = null, ?string $timezone = null, ?string $forceLocale = null): TextColumn {
             /** @var TextColumn $this */
@@ -48,7 +48,7 @@ class TableMacroServiceProvider extends ServiceProvider
 
         TextColumn::macro('localeDigit', function (?string $forceLocale = null): TextColumn {
             /** @var TextColumn $this */
-            $this->formatStateUsing(static fn (mixed $state) => in_array(gettype($state), ['integer', 'double', 'string']) ? FbPersian::digit($state, $forceLocale) : $state);
+            $this->formatStateUsing(static fn (mixed $state) => in_array(gettype($state), ['integer', 'double', 'string']) ? FbPersian::digit((string) $state, $forceLocale) : $state);
 
             return $this;
         });

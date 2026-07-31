@@ -11,7 +11,6 @@ trait TranslatableUnicodeJson
      *
      * @param  mixed  $value
      * @param  int  $flags
-     * @return string
      */
     protected function asJson($value, $flags = 0): string
     {

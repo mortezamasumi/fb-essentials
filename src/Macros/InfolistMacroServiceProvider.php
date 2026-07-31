@@ -2,12 +2,12 @@
 
 namespace Mortezamasumi\FbEssentials\Macros;
 
-use Filament\Infolists\Components\Component;
+use Closure;
 use Filament\Infolists\Components\TextEntry;
+use Filament\Schemas\Components\Component;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\ServiceProvider;
 use Mortezamasumi\FbEssentials\Facades\FbPersian;
-use Closure;
 
 /**
  * Interface declaring Table macros for IDE support
@@ -20,7 +20,7 @@ interface InfolistMacrosInterface {}
 
 class InfolistMacroServiceProvider extends ServiceProvider
 {
-    public function boot()
+    public function boot(): void
     {
         TextEntry::macro('jDate', function (string|Closure|null $format = null, ?string $timezone = null, ?string $forceLocale = null): TextEntry {
             /** @var TextEntry $this */
@@ -48,7 +48,7 @@ class InfolistMacroServiceProvider extends ServiceProvider
 
         TextEntry::macro('localeDigit', function (?string $forceLocale = null): TextEntry {
             /** @var TextEntry $this */
-            $this->formatStateUsing(static fn (mixed $state) => in_array(gettype($state), ['integer', 'double', 'string']) ? FbPersian::digit($state, $forceLocale) : $state);
+            $this->formatStateUsing(static fn (mixed $state) => in_array(gettype($state), ['integer', 'double', 'string']) ? FbPersian::digit((string) $state, $forceLocale) : $state);
 
             return $this;
         });

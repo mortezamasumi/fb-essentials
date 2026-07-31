@@ -2,8 +2,6 @@
 
 namespace Mortezamasumi\FbEssentials\Macros;
 
-use Filament\Tables\Columns\Column;
-use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
@@ -13,25 +11,25 @@ use Mortezamasumi\FbEssentials\Facades\FbPersian;
 /**
  * Interface declaring Collection psort macro for IDE support
  *
- * @method static Column psort(?string $forceLocale) current locale apply
+ * @method static Collection<array-key, mixed> pSort(?string $field = null, bool $ascending = true, ?callable $callback = null) pSort apply
  */
 interface PsortMacrosInterface {}
 
 class PsortMacroServiceProvider extends ServiceProvider
 {
-    public function boot()
+    public function boot(): void
     {
         /**
          * Sorts a collection by a given field or by its values.
          * Allows for a custom callback to be applied to the values before comparison.
          *
-         * @param string|null $field The key to sort by. If null, sorts by the item value itself.
-         * @param bool $ascending True for ascending, false for descending order.
-         * @param callable|null $callback A callback to apply to each value before comparison.
-         * @return \Illuminate\Support\Collection
+         * @param  string|null  $field  The key to sort by. If null, sorts by the item value itself.
+         * @param  bool  $ascending  True for ascending, false for descending order.
+         * @param  callable|null  $callback  A callback to apply to each value before comparison.
+         * @return static
          */
         Collection::macro('pSort', function (?string $field = null, bool $ascending = true, ?callable $callback = null) {
-            /** @var Collection $this */
+            /** @var Collection<array-key, mixed> $this */
 
             // Type 4: Eloquent Collection - sort by attribute or value
             if ($this instanceof EloquentCollection) {
@@ -124,6 +122,6 @@ class PsortMacroServiceProvider extends ServiceProvider
             return new static($sortedItems);
         });
 
-        TextColumn::mixin(new class implements PsortMacrosInterface {});
+        Collection::mixin(new class implements PsortMacrosInterface {});
     }
 }

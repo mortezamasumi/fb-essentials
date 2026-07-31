@@ -9,7 +9,7 @@ it('test collection psort macro', function () {
             'نقی',
             'تقی',
             'آدم',
-            'حوا'
+            'حوا',
         ])
             ->pSort()
             ->toArray()
@@ -21,7 +21,7 @@ it('test collection psort macro', function () {
                 'حوا',
                 'علی',
                 'نقی',
-                'یاور'
+                'یاور',
             ])
                 ->toArray()
         );
@@ -34,7 +34,7 @@ it('test collection psort macro', function () {
             'key03' => 'نقی',
             'key04' => 'تقی',
             'key05' => 'آدم',
-            'key06' => 'حوا'
+            'key06' => 'حوا',
         ])
             ->pSort()
             ->toArray()
@@ -46,7 +46,7 @@ it('test collection psort macro', function () {
                 'key06' => 'حوا',
                 'key01' => 'علی',
                 'key03' => 'نقی',
-                'key02' => 'یاور'
+                'key02' => 'یاور',
             ])
                 ->toArray()
         );
@@ -59,7 +59,7 @@ it('test collection psort macro', function () {
             ['name' => 'نقی', 'another-attribute' => 'another-value'],
             ['name' => 'تقی', 'another-attribute' => 'another-value'],
             ['name' => 'آدم', 'another-attribute' => 'another-value'],
-            ['name' => 'حوا', 'another-attribute' => 'another-value']
+            ['name' => 'حوا', 'another-attribute' => 'another-value'],
         ])
             ->pSort('name')
             ->values()
@@ -72,7 +72,7 @@ it('test collection psort macro', function () {
                 ['name' => 'حوا', 'another-attribute' => 'another-value'],
                 ['name' => 'علی', 'another-attribute' => 'another-value'],
                 ['name' => 'نقی', 'another-attribute' => 'another-value'],
-                ['name' => 'یاور', 'another-attribute' => 'another-value']
+                ['name' => 'یاور', 'another-attribute' => 'another-value'],
             ])->values()->toArray()
         );
 
@@ -84,7 +84,7 @@ it('test collection psort macro', function () {
             ['field' => ['name' => 'نقی']],
             ['field' => ['name' => 'تقی']],
             ['field' => ['name' => 'آدم']],
-            ['field' => ['name' => 'حوا']]
+            ['field' => ['name' => 'حوا']],
         ])
             ->pSort('field.name')
             ->values()

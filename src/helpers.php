@@ -31,22 +31,22 @@ if (! function_exists('__f_datetimefull')) {
 }
 
 if (! function_exists('__digit')) {
-    function __digit(?string $string, $forceLocale = null): string
+    function __digit(?string $string, ?string $forceLocale = null): string
     {
         return FbPersian::digit($string, $forceLocale);
     }
 }
 
 if (! function_exists('__jdate')) {
-    function __jdate(?string $format, $datetime = null, ?string $timezome = null, $forceLocale = null): string
+    function __jdate(?string $format, mixed $datetime = null, ?string $timezone = null, ?string $forceLocale = null): string
     {
-        return FbPersian::jDate($format, $datetime, $timezome, $forceLocale);
+        return FbPersian::jDate($format, $datetime, $timezone, $forceLocale);
     }
 }
 
 if (! function_exists('__jdatetime')) {
-    function __jdatetime(?string $format, $datetime = null, ?string $timezome = null, $forceLocale = null): string
+    function __jdatetime(?string $format, mixed $datetime = null, ?string $timezone = null, ?string $forceLocale = null): string
     {
-        return FbPersian::jDateTime($format, $datetime, $timezome, $forceLocale);
+        return FbPersian::jDateTime($format, $datetime, $timezone, $forceLocale);
     }
 }

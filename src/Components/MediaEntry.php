@@ -2,18 +2,22 @@
 
 namespace Mortezamasumi\FbEssentials\Components;
 
-use Filament\Infolists\Components\Entry;
-use Illuminate\Support\Collection;
 use Closure;
 use Exception;
+use Filament\Infolists\Components\Entry;
+use Illuminate\Support\Collection;
 
 // TODO: consider extracting into a separate package
 class MediaEntry extends Entry
 {
     protected string $view = 'fb-essentials::media-entry';
+
     protected ?Closure $filterMediaUsing = null;
+
     protected Closure|bool $mediaText = true;
+
     protected Closure|string $mediaTextSize = 'sm';  // xs, sm, md, lg
+
     protected Closure|string $mediaIconSize = 'sm';  // xs, sm, md, lg
 
     public function getState(): mixed
@@ -24,7 +28,7 @@ class MediaEntry extends Entry
             return collect([]);
         }
 
-        throw_unless(get_class($media) === 'Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection', new Exception('state must be instance of spatie MediaCollection'));
+        throw_unless(is_a($media, 'Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection'), new Exception('state must be instance of spatie MediaCollection'));
 
         return $media;
     }
@@ -36,6 +40,10 @@ class MediaEntry extends Entry
         return $this;
     }
 
+    /**
+     * @param  Collection<array-key, mixed>|null  $media
+     * @return Collection<array-key, mixed>
+     */
     public function filterMedia(?Collection $media): Collection
     {
         if (! $media) {

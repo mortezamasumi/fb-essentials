@@ -2,12 +2,12 @@
 
 namespace Mortezamasumi\FbEssentials\Components;
 
-use Filament\Forms\Components\RichEditor\RichContentRenderer;
-use Filament\Infolists\Components\Entry;
-use Illuminate\Support\Facades\App;
 use DOMDocument;
 use DOMElement;
 use DOMXPath;
+use Filament\Forms\Components\RichEditor\RichContentRenderer;
+use Filament\Infolists\Components\Entry;
+use Illuminate\Support\Facades\App;
 
 // TODO: consider extracting into a separate package
 class RichEntry extends Entry
@@ -19,6 +19,9 @@ class RichEntry extends Entry
         return static::processRichContentHtml($this->getConstantState());
     }
 
+    /**
+     * @param  string|array<string, mixed>  $html
+     */
     public static function processRichContentHtml(string|array $html): string
     {
         if (is_array($html)) {
@@ -29,7 +32,7 @@ class RichEntry extends Entry
             return $html;
         }
 
-        $dom = new DOMDocument();
+        $dom = new DOMDocument;
         libxml_use_internal_errors(true);
         $dom->loadHTML('<?xml encoding="UTF-8">'.$html, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
         libxml_clear_errors();
@@ -38,6 +41,10 @@ class RichEntry extends Entry
 
         // Find all <p> tags that have a "text-align" style property
         $paragraphs = $xpath->query("//p[contains(@style, 'text-align')]");
+
+        if ($paragraphs === false) {
+            return (string) $dom->saveHTML();
+        }
 
         /** @var DOMElement $p */
         foreach ($paragraphs as $p) {
@@ -78,6 +85,11 @@ class RichEntry extends Entry
             if (! empty($imgStyle)) {
                 // The '.' in the query means we search relative to the current node ($p)
                 $images = $xpath->query('.//img', $p);
+
+                if ($images === false) {
+                    continue;
+                }
+
                 /** @var DOMElement $img */
                 foreach ($images as $img) {
                     $currentStyle = $img->getAttribute('style');
@@ -88,6 +100,6 @@ class RichEntry extends Entry
             }
         }
 
-        return $dom->saveHTML();
+        return (string) $dom->saveHTML();
     }
 }

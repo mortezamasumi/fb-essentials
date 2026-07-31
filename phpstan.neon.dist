@@ -1,0 +1,22 @@
+includes:
+    - vendor/larastan/larastan/extension.neon
+
+parameters:
+    level: 8
+    paths:
+        - src
+    tmpDir: build/phpstan
+    ignoreErrors:
+        # Filament macros bind $this to the component at runtime via Macroable::mixin();
+        # the @var $this annotations are the documented way to type these closures.
+        - identifier: varTag.nativeType
+          path: src/Macros/*
+        # Macro methods (e.g. jDateTime) are registered dynamically on Filament components.
+        - identifier: method.notFound
+          path: src/Macros/*
+        # Collection::macro closures are late-bound to the collection instance at call time.
+        - identifier: new.static
+          path: src/Macros/PsortMacroServiceProvider.php
+        # Traits are shipped for consumers to use; they are intentionally not used in src/.
+        - identifier: trait.unused
+          path: src/Traits/*

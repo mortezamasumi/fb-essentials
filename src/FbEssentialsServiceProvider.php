@@ -19,6 +19,7 @@ use Spatie\LaravelPackageTools\PackageServiceProvider;
 class FbEssentialsServiceProvider extends PackageServiceProvider
 {
     public static string $name = 'fb-essentials';
+
     public static string $viewNamespace = 'fb-essentials';
 
     public function configurePackage(Package $package): void
