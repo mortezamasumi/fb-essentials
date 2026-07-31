@@ -52,7 +52,7 @@ class FbEssentialsServiceProvider extends PackageServiceProvider
                 return Response::file($publishedPath);
             }
 
-            $packagePath = __DIR__.'/../resources/images/'.$filename;
+            $packagePath = __DIR__.'/../resources/dist/images/'.$filename;
             if (! file_exists($packagePath)) {
                 abort(404);
             }
