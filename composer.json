@@ -24,7 +24,7 @@
         }
     ],
     "require": {
-        "php": "^8.4",
+        "php": "^8.5",
         "ariaieboy/filament-jalali": "^3.0",
         "bezhansalleh/filament-language-switch": "^5.0",
         "bezhansalleh/filament-shield": "^4.0",
