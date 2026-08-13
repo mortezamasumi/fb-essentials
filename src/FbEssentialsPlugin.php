@@ -3,6 +3,7 @@
 namespace Mortezamasumi\FbEssentials;
 
 use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
+use BezhanSalleh\LanguageSwitch\Enums\TriggerStyle;
 use BezhanSalleh\LanguageSwitch\Http\Middleware\SwitchLanguageLocale;
 use BezhanSalleh\LanguageSwitch\LanguageSwitch;
 use Filament\Contracts\Plugin;
@@ -58,7 +59,9 @@ class FbEssentialsPlugin implements Plugin
     {
         if (config('fb-essentials.has_language_switcher')) {
             LanguageSwitch::configureUsing(function (LanguageSwitch $switch) {
-                $switch->locales(config('fb-essentials.used_languages'));
+                $switch
+                    ->locales(config('fb-essentials.used_languages'))
+                    ->trigger(style: TriggerStyle::IconLabel);
             });
         }
     }
